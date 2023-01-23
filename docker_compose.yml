@@ -1,0 +1,23 @@
+version: '3.3'
+services:
+  db:
+    image: mysql:8.0.31
+    environment:
+      MYSQL_DATABASE: 'book_tube'
+      MYSQL_USER: 'book_tube'
+      MYSQL_PASSWORD: 'reader1234'
+      MYSQL_ROOT_PASSWORD: 'root'
+      MYSQL_ROOT_USERNAME: 'root'
+    ports:
+      - '3306:3306'
+    expose:
+    - 3306
+  booktube:
+    image: booktube:latest
+    container_name: booktube
+    depends_on:
+      - db
+    ports:
+      - "8080:8080"
+    expose:
+      - 8080
